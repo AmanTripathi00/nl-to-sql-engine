@@ -7,7 +7,10 @@ import sqlglot
 st.set_page_config(page_title="NL-to-SQL Generator", layout="wide")
 st.title("Semantic Text-to-SQL Engine with NLG Explanation")
 
-api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
+if "GROQ_API_KEY" in st.secrets:
+    api_key = st.secrets["GROQ_API_KEY"]
+else:
+    api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
 
 DATABASE_SCHEMA = """
 Tables:
